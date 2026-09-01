@@ -1,0 +1,15 @@
+{
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Default Light Modern",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.tree.indent": 12,
+  "workbench.panel.defaultLocation": "bottom",
+  "explorer.compactFolders": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "breadcrumbs.enabled": true,
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.tabs.location": "right",
+  "outline.collapseItems": "alwaysCollapse"
+}
