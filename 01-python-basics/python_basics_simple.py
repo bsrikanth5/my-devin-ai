@@ -22,9 +22,9 @@ print("=" * 40)
 print("2. VARIABLES — boxes that hold values")
 print("=" * 40)
 
-name = "Srikanth"       # text  -> str
-age = 30                # whole number -> int
-height = 5.9            # decimal -> float
+name = "Steve"          # text  -> str
+age = 54                # whole number -> int
+height = 5.8           # decimal -> float
 is_learning = True      # yes/no -> bool
 
 print(name, age, height, is_learning)
@@ -65,12 +65,12 @@ print("=" * 40)
 print("5. LISTS — many values in order")
 print("=" * 40)
 
-fruits = ["apple", "banana", "cherry"]
+fruits = ["apple", "banana", "cherry", "mango"]
 print("all:", fruits)
 print("first:", fruits[0])
 print("last:", fruits[-1])
 
-fruits.append("mango")     # add to the end
+fruits.append("orange")     # add to the end
 print("after append:", fruits)
 print("how many:", len(fruits))
 
@@ -121,15 +121,18 @@ def greet(person):
     return f"Hello, {person}!"
 
 
-print(greet("Srikanth"))
+print(greet("Steve"))
 print(greet("world"))
 
 
 def add(a, b):
     return a + b
 
+def multiply(a,b):
+    return a*b
 
 print("add(2, 3) =", add(2, 3))
+print("multiply(2,3) =", multiply(2,3))
 
 
 print()
@@ -137,7 +140,7 @@ print("=" * 40)
 print("9. DICTIONARIES — labelled values")
 print("=" * 40)
 
-person = {"name": "Srikanth", "age": 30, "city": "Hyderabad"}
+person = {"name": "Steve", "age": 54, "city": "Wilmington"}
 print("whole dict:", person)
 print("name:", person["name"])
 
@@ -148,28 +151,30 @@ for key, value in person.items():
     print(f"  {key} -> {value}")
 
 
+movies = {"Casablanca": 1942, "The Godfather": 1972, "Pulp Fiction": 1994}
+
+print("movies:", movies)
+
+for key, value in movies.items() :
+    print("")
+
 print()
 print("=" * 40)
 print("10. GETTING INPUT (commented out so this file runs on its own)")
 print("=" * 40)
 
 # Uncomment these two lines and re-run to try it:
-# your_name = input("What's your name? ")
-# print(greet(your_name))
+your_name = input("What's your name? ")
+print(greet(your_name))
 print("See the comments in section 10 to try input().")
 
+count = 20
+while count > 0:
+    print("even numbers:", count)
+    count = count - 2
+print("print only even numbers!")
 
-print()
-print("=" * 40)
-print("NOW YOU TRY")
-print("=" * 40)
-print("""
-1. Change `name` at the top and re-run.
-2. Add your own fruit to the list.
-3. Write a function `multiply(a, b)` and print multiply(4, 5).
-4. Make a dictionary about your favourite movie (title, year, rating)
-   and print each key/value with a for loop.
-5. Print the even numbers from 1 to 20 using a for loop and `if n % 2 == 0`.
-
-When these feel easy, move on to python_basics_exercises.py.
-""")
+print("Even numbers:")
+for number in range(1, 21):
+    if number % 2 == 0:
+        print(" ", number)
