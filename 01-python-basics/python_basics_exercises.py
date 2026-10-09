@@ -10,103 +10,160 @@ PASS/FAIL for each exercise. Solutions are in python_basics_solutions.py.
 # ---------- 1. Variables & types ----------
 def to_celsius(fahrenheit):
     """Convert Fahrenheit to Celsius: (F - 32) * 5/9"""
-    pass
+    return (fahrenheit - 32) * 5/9
 
 
 def describe(value):
     """Return a string like "42 is of type int"."""
-    pass
-
+    return f"{value} is of type {type(value).__name__}"
 
 # ---------- 2. Strings ----------
 def initials(full_name):
     """"srikanth b reddy" -> "S.B.R." """
-    pass
+    return "".join([name[0].upper() +for name in full_name.split()])
 
 
 def is_palindrome(s):
     """Ignore case and spaces. "Never odd or even" -> True"""
-    pass
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
 
 
 def count_vowels(s):
-    pass
+    vowels = "aeiou"
+    return sum(1 for char in s.lower() if char in vowels)
 
 
 # ---------- 3. Conditionals ----------
 def grade(score):
     """90+ 'A', 80+ 'B', 70+ 'C', 60+ 'D', else 'F'."""
-    pass
+    if score >= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
 
 
 def fizzbuzz(n):
     """Multiples of 3 -> 'Fizz', 5 -> 'Buzz', both -> 'FizzBuzz', else str(n)."""
-    pass
+    result = []
+    for i in range(1, n + 1):
+        if i % 15 == 0:
+            result.append('FizzBuzz')
+        elif i % 3 == 0:
+            result.append('Fizz')
+        elif i % 5 == 0:
+            result.append('Buzz')
+        else:
+            result.append(str(i))
+    return result
 
 
 # ---------- 4. Loops ----------
 def factorial(n):
     """factorial(5) == 120, factorial(0) == 1"""
-    pass
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
 
 
 def fibonacci(n):
     """Return a list of the first n Fibonacci numbers starting 0, 1."""
-    pass
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    elif n == 2:
+        return [0, 1]
+    
+    fib = [0, 1]
+    for i in range(2, n):
+        fib.append(fib[i-1] + fib[i-2])
+    return fib
 
 
 def sum_digits(n):
     """sum_digits(1234) == 10"""
-    pass
+    total = 0
+    for digit in str(n):
+        total += int(digit)
+    return total
 
 
 # ---------- 5. Lists ----------
 def second_largest(nums):
     """Return the second largest distinct value, or None if there isn't one."""
+    unique_nums = list(set(nums))
+    if len(unique_nums) < 2:
+        return None
+    unique_nums.sort(reverse=True)
+    return unique_nums[1]
+   
     pass
 
 
 def flatten(nested):
     """[[1, 2], [3], []] -> [1, 2, 3]  (one level deep)"""
-    pass
+    result = []
+    for sublist in nested:
+        result.extend(sublist)
+    return result
 
 
 def evens_squared(nums):
     """Use a list comprehension: [1,2,3,4] -> [4, 16]"""
-    pass
+    return [num ** 2 for num in nums if num % 2 == 0]
 
 
 # ---------- 6. Dicts & sets ----------
 def word_count(text):
     """"a b a" -> {"a": 2, "b": 1}"""
-    pass
+    words = text.split()
+    count = {}
+    for word in words:
+        count[word] = count.get(word, 0) + 1
+    return count
 
 
 def invert(d):
     """{"a": 1, "b": 2} -> {1: "a", 2: "b"}"""
-    pass
+    return {v: k for k, v in d.items()}
 
 
 def common_items(a, b):
     """Return a sorted list of items present in both lists."""
-    pass
+    return sorted(list(set(a) & set(b)))
 
 
 # ---------- 7. Functions ----------
 def apply_twice(fn, x):
     """apply_twice(lambda n: n + 3, 1) == 7"""
-    pass
+    return fn(fn(x))
 
 
 def make_counter():
     """Return a function that returns 1, 2, 3, ... on successive calls."""
-    pass
+    count = 0
+    def counter():
+        nonlocal count
+        count += 1
+        return count
+    return counter
 
 
 # ---------- 8. Exceptions ----------
 def safe_divide(a, b):
     """Return a / b, or None if b == 0."""
-    pass
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
 
 
 # ---------- 9. Classes ----------
@@ -118,7 +175,20 @@ class BankAccount:
     acct.withdraw(1000) -> raises ValueError("insufficient funds")
     str(acct) == "Srikanth: 120"
     """
-    pass
+    def __init__(self, owner, initial_balance):
+        self.owner = owner
+        self.balance = initial_balance
+    
+    def deposit(self, amount):
+        self.balance += amount
+    
+    def withdraw(self, amount):
+        if self.balance < amount:
+            raise ValueError("insufficient funds")
+        self.balance -= amount
+    
+    def __str__(self):
+        return f"{self.owner}: {self.balance}"
 
 
 # =====================================================================
