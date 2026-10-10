@@ -50,6 +50,9 @@ file's public class. In a real project each class would live in its own file.
 
 ## Suggested order
 
+See [LEARNING_PATH.md](LEARNING_PATH.md) for a Gang of Four synopsis, the full
+23-pattern study order with checkboxes, and the order within each family.
+
 If you're new to patterns, start with the ones you'll meet most often in real
 code, then go through the rest:
 
