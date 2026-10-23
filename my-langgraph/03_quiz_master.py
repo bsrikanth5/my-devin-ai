@@ -39,6 +39,7 @@ class State(TypedDict, total=False):
     topic: str
     question_num: int   # which question we're on (1, 2, 3)
     question: str
+    asked: list[str]    # every question so far, so none get repeated
     answer: str
     attempts: int       # tries used on the current question
     correct: bool
@@ -47,14 +48,20 @@ class State(TypedDict, total=False):
 
 def ask_question(state: State) -> dict:
     num = state.get("question_num", 0) + 1
+    asked = state.get("asked", [])
     reply = llm.invoke(
         f"Write quiz question #{num} about {state['topic']} for a beginner. "
         "It must have a short answer (a word or a phrase). "
-        "Reply with the question only. Don't repeat earlier questions: "
-        f"the previous one was: {state.get('question', 'none')}"
+        "Reply with the question only. Don't repeat any of these earlier "
+        f"questions: {asked or 'none yet'}"
     )
     print(f"\nQuestion {num}: {reply.content}")
-    return {"question_num": num, "question": reply.content, "attempts": 0}
+    return {
+        "question_num": num,
+        "question": reply.content,
+        "asked": asked + [reply.content],  # a new list, not .append()
+        "attempts": 0,
+    }
 
 
 def get_answer(state: State) -> dict:
