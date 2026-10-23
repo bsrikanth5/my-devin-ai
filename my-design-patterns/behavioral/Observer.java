@@ -41,6 +41,10 @@ public class Observer {
 
         void upload(String title) {
             System.out.println(name + " uploaded \"" + title + "\"");
+            if (title.startsWith("[private]")) {
+                System.out.println("  (private - no notifications sent)");
+                return;
+            }
             for (Subscriber s : subscribers) {
                 s.onNewVideo(name, title);
             }
@@ -60,6 +64,18 @@ public class Observer {
         }
     }
 
+   static class VideoCounter implements Subscriber {
+        private int count = 0;
+    
+        public void onNewVideo(String channel, String title) {
+            count++;
+    }
+    
+    public int getCount() {
+        return count;
+    }
+
+   }
     public static void main(String[] args) {
         Channel channel = new Channel("JavaCafe");
 
@@ -70,13 +86,8 @@ public class Observer {
         channel.subscribe(phonePush);
         channel.upload("Design Patterns in 10 minutes");
 
-        channel.unsubscribe(asha);
-        channel.upload("Observer pattern deep dive");
+        //channel.unsubscribe(asha);
+        channel.upload("[private]Observer pattern deep dive");
     }
 }
 
-/*
- * Try it:
- *  1. Add a subscriber that counts how many videos it has seen.
- *  2. Make upload() skip notifications for titles starting with "[private]".
- */

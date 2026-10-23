@@ -37,6 +37,10 @@ public class Strategy {
         public double cost(double weightKg) { return 0; }
     }
 
+    static class FreeOver50Shipping implements ShippingStrategy {
+        public double cost(double weightKg) { return 0; }
+    }
+
     // The context: uses whichever strategy it's given.
     static class Checkout {
         private ShippingStrategy shipping;
@@ -56,7 +60,7 @@ public class Strategy {
     }
 
     public static void main(String[] args) {
-        double items = 40.00;
+        double items = 55.00;
         double weight = 3.0;
 
         Checkout checkout = new Checkout(new StandardShipping());
@@ -68,14 +72,11 @@ public class Strategy {
         checkout.setShipping(new StorePickup());
         checkout.printTotal(items, weight);
 
+        checkout.setShipping(new FreeOver50Shipping());
+        checkout.printTotal(items, weight);
+
         // A one-off strategy as a lambda - no class needed.
         ShippingStrategy flatRate = kg -> 7.99;
         System.out.printf("  %-18s total $%.2f%n", "lambda flat rate", items + flatRate.cost(weight));
     }
 }
-
-/*
- * Try it:
- *  1. Add FreeOver50Shipping: free if itemsTotal >= 50. What does the
- *     interface need to know now? (Hint: change cost()'s parameters.)
- */

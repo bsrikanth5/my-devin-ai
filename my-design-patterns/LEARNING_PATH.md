@@ -77,10 +77,10 @@ are a condensed version of that format.
 
 These are the patterns you'll see most in real code and interviews.
 
-- [ ] 1. [Strategy](behavioral/Strategy.java): swap algorithms behind an interface
-- [ ] 2. [Observer](behavioral/Observer.java): notify subscribers of changes
-- [ ] 3. [Factory Method](creational/FactoryMethod.java): subclasses decide what to create
-- [ ] 4. [Builder](creational/Builder.java): build complex objects step by step
+- [x] 1. [Strategy](behavioral/Strategy.java): swap algorithms behind an interface
+- [x] 2. [Observer](behavioral/Observer.java): notify subscribers of changes
+- [x] 3. [Factory Method](creational/FactoryMethod.java): subclasses decide what to create
+- [x] 4. [Builder](creational/Builder.java): build complex objects step by step
 - [ ] 5. [Singleton](creational/Singleton.java): one shared instance
 - [ ] 6. [Decorator](structural/Decorator.java): wrap an object to add behaviour
 - [ ] 7. [Adapter](structural/Adapter.java): make an incompatible interface fit
