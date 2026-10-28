@@ -29,6 +29,23 @@ cp .env.example .env               # then open .env and paste your key
 
 `.env` is git-ignored, so your key never gets committed.
 
+### Optional: keep the key in the macOS Keychain instead of `.env`
+
+If `ANTHROPIC_API_KEY` is already set in your shell, the lessons use it and you can skip `.env`. To store it in the Keychain rather than in a plain-text file:
+
+```bash
+# 1. Store the key once (you'll be prompted to paste it)
+security add-generic-password -a "$USER" -s anthropic -w
+
+# 2. Add this line to ~/.zshrc, then open a new terminal
+export ANTHROPIC_API_KEY=$(security find-generic-password -s anthropic -w)
+
+# 3. Check it's set (prints only the first 7 characters)
+echo ${ANTHROPIC_API_KEY:0:7}
+```
+
+If your key is already in an environment variable with a different name, `.env` can point to it: `ANTHROPIC_API_KEY=${MY_CLAUDE_KEY}`.
+
 ## Run a lesson
 
 ```bash
