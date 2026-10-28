@@ -38,7 +38,7 @@ If `ANTHROPIC_API_KEY` is already set in your shell, the lessons use it and you 
 security add-generic-password -a "$USER" -s anthropic -w
 
 # 2. Add this line to ~/.zshrc, then open a new terminal
-export ANTHROPIC_API_KEY=$(security find-generic-password -s anthropic -w)
+export ANTHROPIC_API_KEY=$(security find-generic-password -a "$USER" -s anthropic -w)
 
 # 3. Check it's set (prints only the first 7 characters)
 echo ${ANTHROPIC_API_KEY:0:7}
